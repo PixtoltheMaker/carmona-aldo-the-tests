@@ -80,6 +80,8 @@ radius = 12.0415945
 radius = 13.0
 
 [node name="Enemy_Crab" type="CharacterBody2D" unique_id=704327403]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_p5qm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1172416677]

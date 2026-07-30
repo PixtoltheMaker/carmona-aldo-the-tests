@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://876p3xbomen0"]
 
+[ext_resource type="PackedScene" uid="uid://ttp38shnjfl7" path="res://Scenes/killbox.tscn" id="1_d7hde"]
 [ext_resource type="Texture2D" uid="uid://8ic4cttksujh" path="res://Assets/warped-files/Assets/PNG/environment/layers/tilesets.png" id="1_fk0w5"]
 [ext_resource type="Texture2D" uid="uid://y3ie4yc42wb7" path="res://Assets/warped-files/Assets/PNG/environment/layers/background.png" id="2_d7hde"]
 [ext_resource type="PackedScene" uid="uid://bs0u1fej8bnko" path="res://Scenes/player.tscn" id="3_wyeu2"]
@@ -121,6 +122,9 @@ texture = ExtResource("1_fk0w5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ri1lo")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7hde"]
+size = Vector2(1525, 236)
+
 [node name="Test 1" type="Node2D" unique_id=706612293]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=491922559]
@@ -145,6 +149,8 @@ position = Vector2(-109, 0)
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=554453049]
 
 [node name="Enemy_Crab" parent="." unique_id=704327403 instance=ExtResource("4_7tif6")]
+light_mask = 4
+visibility_layer = 4
 position = Vector2(536, 48)
 
 [node name="Patrol Nodes" type="Node2D" parent="Enemy_Crab" unique_id=630134645]
@@ -155,3 +161,10 @@ position = Vector2(-160, -3)
 
 [node name="Point2" type="Marker2D" parent="Enemy_Crab/Patrol Nodes" unique_id=1540233720]
 position = Vector2(128, -1)
+
+[node name="Killbox" parent="." unique_id=148239564 instance=ExtResource("1_d7hde")]
+position = Vector2(105, 298)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox" unique_id=1561912215]
+position = Vector2(70.5, -85)
+shape = SubResource("RectangleShape2D_d7hde")

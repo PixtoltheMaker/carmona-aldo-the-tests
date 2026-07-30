@@ -151,8 +151,40 @@ tile_set = SubResource("TileSet_50ct6")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1525658861]
 
-[node name="Enemy_Crab" parent="." unique_id=704327403 instance=ExtResource("3_50ct6")]
+[node name="Enemy_Crab" parent="." unique_id=704327403 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_50ct6")]
 position = Vector2(-162, -16)
+patrol_points = NodePath("Patrol Nodes")
 
-[node name="Enemy_Crab2" parent="." unique_id=63036481 instance=ExtResource("3_50ct6")]
+[node name="Patrol Nodes" type="Node2D" parent="Enemy_Crab" unique_id=1985812979]
+position = Vector2(-1, 1)
+
+[node name="Point1" type="Marker2D" parent="Enemy_Crab/Patrol Nodes" unique_id=1819398844]
+position = Vector2(-219, -4)
+
+[node name="Point2" type="Marker2D" parent="Enemy_Crab/Patrol Nodes" unique_id=985500078]
+
+[node name="Enemy_Crab2" parent="." unique_id=63036481 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_50ct6")]
 position = Vector2(486, 0)
+patrol_points = NodePath("Patrol Nodes")
+
+[node name="Patrol Nodes" type="Node2D" parent="Enemy_Crab2" unique_id=1343837294]
+position = Vector2(-1, 1)
+
+[node name="Point1" type="Marker2D" parent="Enemy_Crab2/Patrol Nodes" unique_id=174763993]
+position = Vector2(-183, -10)
+
+[node name="Point2" type="Marker2D" parent="Enemy_Crab2/Patrol Nodes" unique_id=729068027]
+position = Vector2(34, -12)
+
+[node name="Enemy_Crab3" parent="." unique_id=519272627 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_50ct6")]
+position = Vector2(104, -107)
+patrol_points = NodePath("Patrol Nodes")
+
+[node name="Patrol Nodes" type="Node2D" parent="Enemy_Crab3" unique_id=1609788153]
+position = Vector2(-1, 1)
+
+[node name="Point1" type="Marker2D" parent="Enemy_Crab3/Patrol Nodes" unique_id=337115443]
+position = Vector2(-73, 98)
+
+[node name="Point2" type="Marker2D" parent="Enemy_Crab3/Patrol Nodes" unique_id=974994911]
+position = Vector2(72, 96)

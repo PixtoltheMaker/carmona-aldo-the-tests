@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dlhty34vk06rb"]
+
+[ext_resource type="Texture2D" uid="uid://cfuhcnwxl7v17" path="res://Assets/warped-files/Assets/PNG/spritesheets/Fx/impact.png" id="1_jtpvw"]
+[ext_resource type="Script" uid="uid://13v08k4o8l0m" path="res://Scripts/bullet_impact_frame.gd" id="2_k5h5k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67r26"]
+atlas = ExtResource("1_jtpvw")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqk8g"]
+atlas = ExtResource("1_jtpvw")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kjwx"]
+atlas = ExtResource("1_jtpvw")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhcx8"]
+atlas = ExtResource("1_jtpvw")
+region = Rect2(36, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17p4x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67r26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqk8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kjwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhcx8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 16.0
+}]
+
+[node name="Bullet Impact Frame" type="AnimatedSprite2D" unique_id=538908792]
+sprite_frames = SubResource("SpriteFrames_17p4x")
+animation = &"Impact"
+autoplay = "Impact"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_k5h5k")
+
+[node name="Timer" type="Timer" parent="." unique_id=1582240607]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

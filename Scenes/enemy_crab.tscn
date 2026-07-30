@@ -76,17 +76,35 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2ts6"]
 radius = 12.0415945
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5qm2"]
+radius = 13.0
+
 [node name="Enemy_Crab" type="CharacterBody2D" unique_id=704327403]
 script = ExtResource("1_p5qm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1172416677]
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_ut5ot")
-animation = &"Idle"
+animation = &"Walk"
 autoplay = "Idle"
-frame_progress = 0.397059
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=189507300]
-position = Vector2(-1, -12)
+position = Vector2(-1, -11)
 shape = SubResource("CircleShape2D_x2ts6")
 debug_color = Color(0.6973918, 0.3451556, 0.8901608, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=740085917]
+wait_time = 2.0
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1784842911]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=134473525]
+position = Vector2(-1, -11)
+shape = SubResource("CircleShape2D_p5qm2")
+debug_color = Color(0.740503, 0.21429804, 0.34998697, 0.41960785)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

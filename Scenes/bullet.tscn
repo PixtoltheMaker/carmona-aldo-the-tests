@@ -32,6 +32,7 @@ radius = 4.0
 sprite_frames = SubResource("SpriteFrames_6afsh")
 animation = &"Normal"
 script = ExtResource("2_oduel")
+metadata/_edit_vertical_guides_ = [44.0]
 
 [node name="Timer" type="Timer" parent="." unique_id=1179102367]
 wait_time = 5.0

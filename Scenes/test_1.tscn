@@ -163,7 +163,9 @@ position = Vector2(-160, -3)
 position = Vector2(128, -1)
 
 [node name="Killbox" parent="." unique_id=148239564 instance=ExtResource("1_d7hde")]
-position = Vector2(105, 298)
+position = Vector2(627, 321)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox" unique_id=1561912215]
 position = Vector2(70.5, -85)

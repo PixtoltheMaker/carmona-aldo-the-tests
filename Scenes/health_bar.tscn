@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c6yq37ila02th"]
+
+[ext_resource type="Script" uid="uid://ctk322qp8bvr6" path="res://Scripts/health_bar.gd" id="1_m34ix"]
+[ext_resource type="Texture2D" uid="uid://dv4sd6skn21n4" path="res://Assets/kenney_pixel-platformer/Tiles/Heart_1.png" id="2_qay8w"]
+[ext_resource type="Texture2D" uid="uid://jte43xvc463w" path="res://Assets/kenney_pixel-platformer/Tiles/Heart_0.png" id="3_qay8w"]
+
+[node name="Health Bar" type="Node2D" unique_id=939165351]
+script = ExtResource("1_m34ix")
+heart1 = ExtResource("2_qay8w")
+heart0 = ExtResource("3_qay8w")
+
+[node name="Heart1" type="Sprite2D" parent="." unique_id=1080780477]
+position = Vector2(7, 6)
+texture = ExtResource("2_qay8w")
+
+[node name="Heart2" type="Sprite2D" parent="." unique_id=1993470240]
+position = Vector2(24, 6)
+texture = ExtResource("2_qay8w")
+
+[node name="Heart3" type="Sprite2D" parent="." unique_id=1955407249]
+position = Vector2(41, 6)
+texture = ExtResource("2_qay8w")
+
+[node name="Heart4" type="Sprite2D" parent="." unique_id=708126007]
+position = Vector2(58, 6)
+texture = ExtResource("2_qay8w")
+
+[node name="Heart5" type="Sprite2D" parent="." unique_id=1496410845]
+position = Vector2(75, 6)
+texture = ExtResource("2_qay8w")

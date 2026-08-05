@@ -50,7 +50,8 @@ animations = [{
 }]
 
 [node name="Enemy Death Effect" type="AnimatedSprite2D" unique_id=758657419]
-position = Vector2(0, -14)
+position = Vector2(0, -24.5)
+scale = Vector2(1, 1.0208334)
 sprite_frames = SubResource("SpriteFrames_tmlsh")
 animation = &"Explosion"
 autoplay = "Explosion"

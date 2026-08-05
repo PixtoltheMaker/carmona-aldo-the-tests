@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b48ku5x1lnvlg"]
+
+[ext_resource type="PackedScene" uid="uid://c6yq37ila02th" path="res://Scenes/health_bar.tscn" id="1_h8xao"]
+
+[node name="Game Screen" type="CanvasLayer" unique_id=1631691290]
+
+[node name="Health Bar" parent="." unique_id=939165351 instance=ExtResource("1_h8xao")]

@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
@@ -118,3 +119,10 @@ func Input_Movement() -> float:
 	var direction: = Input.get_axis("Move_Left", "Move_Right")
 	
 	return direction
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		var stats := body.find_child("Enemy Stats") as EnemyStats
+		print("Enemy entered", stats.damage_amount )
+		HealthManager.decrease_health(stats.damage_amount)

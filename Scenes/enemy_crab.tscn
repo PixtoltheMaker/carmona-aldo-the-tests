@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7b1286dmkv1s" path="res://Scripts/enemy_crab.gd" id="1_p5qm2"]
 [ext_resource type="Texture2D" uid="uid://syutdxeyvbjc" path="res://Assets/warped-files/Assets/PNG/spritesheets/enemies/crab-idle.png" id="1_x2ts6"]
 [ext_resource type="Texture2D" uid="uid://c8kccfvnakarp" path="res://Assets/warped-files/Assets/PNG/spritesheets/enemies/crab-walk.png" id="2_p5qm2"]
+[ext_resource type="PackedScene" uid="uid://cmdgp7hr22yn6" path="res://Scenes/enemy_stats.tscn" id="4_lhn7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhn7x"]
 atlas = ExtResource("1_x2ts6")
@@ -79,9 +80,9 @@ radius = 12.0415945
 [sub_resource type="CircleShape2D" id="CircleShape2D_p5qm2"]
 radius = 13.0
 
-[node name="Enemy_Crab" type="CharacterBody2D" unique_id=704327403]
+[node name="Enemy_Crab" type="CharacterBody2D" unique_id=704327403 groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 3
 script = ExtResource("1_p5qm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1172416677]
@@ -107,6 +108,8 @@ collision_mask = 2
 position = Vector2(-1, -11)
 shape = SubResource("CircleShape2D_p5qm2")
 debug_color = Color(0.740503, 0.21429804, 0.34998697, 0.41960785)
+
+[node name="Enemy Stats" parent="." unique_id=1244936304 instance=ExtResource("4_lhn7x")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

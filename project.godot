@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="CarmonaAldo_The_Tests"
-run/main_scene="uid://876p3xbomen0"
+run/main_scene="uid://ct2teg0vpf81y"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+HealthManager="*uid://c34w4cyhoqf1n"
 
 [debug]
 
@@ -30,6 +34,11 @@ window/size/viewport_height=270
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[global_group]
+
+Player=""
+Enemy=""
 
 [input]
 
@@ -60,9 +69,14 @@ Shoot={
 
 [layer_names]
 
+2d_render/layer_1="Ground"
+2d_render/layer_2="Player"
+2d_render/layer_3="Enemy"
+2d_render/layer_4="Agrression"
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_5="Bullet"
 
 [physics]
 

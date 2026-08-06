@@ -9,9 +9,12 @@ var current_node_state_name : String
 
 
 func _ready() -> void:
+	
 	for child in get_children():
 		if child is NodeState:
-			node_states[child.name.to_lower()] = child
+			var child_state : NodeState = child as NodeState
+			node_states[child_state.name.to_lower()] = child_state
+			child_state.transition.connect(transition_to)
 	
 	
 	if initial_node_state:

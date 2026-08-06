@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://djegqv03e3051" path="res://Scripts/enemy_dino.gd" id="1_ae7rm"]
 [ext_resource type="Texture2D" uid="uid://dgllwjrm3eqa0" path="res://Assets/Enemies Pack FIles/Enemies Pack FIles/Assets/spritesheets/dino-idle.png" id="2_7d8q5"]
 [ext_resource type="Script" uid="uid://c6bbmss8bqi8r" path="res://Scripts/gravity.gd" id="3_7d8q5"]
-[ext_resource type="Script" uid="uid://4aofyfcl5s3r" path="res://Scripts/StateMachine/state_machine_controller.gd" id="4_886ra"]
+[ext_resource type="Script" uid="uid://4aofyfcl5s3r" path="res://Scripts/state_machine_controller.gd" id="4_886ra"]
 [ext_resource type="Script" uid="uid://cgoyteb1gmuta" path="res://Scripts/StateMachine/node_finite_state_machine.gd" id="4_hjlad"]
 [ext_resource type="Script" uid="uid://co0fuwhtwloq5" path="res://Scripts/idle_state.gd" id="5_nyqhr"]
 [ext_resource type="Script" uid="uid://cha0ivhdnhcoo" path="res://Scripts/attack_state.gd" id="6_tewnn"]

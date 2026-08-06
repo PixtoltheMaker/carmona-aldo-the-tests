@@ -5,9 +5,13 @@ var bullet_impact_effects := preload("res://Scenes/bullet_impact_frame.tscn")
 var speed : int = 600
 var direction : int
 var damage_amount : int = 1
+var move_x_direction : bool
 
 func _physics_process(delta: float) -> void:
-	move_local_x(direction * speed * delta)
+	if move_x_direction:
+		move_local_x(direction * speed * delta)
+	else:
+		move_local_y(direction * speed * delta)
 
 
 func _on_timer_timeout() -> void:

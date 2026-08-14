@@ -6,9 +6,6 @@ var bullet := preload("res://Scenes/bullet.tscn")
 @export var animated_sprite_2d : AnimatedSprite2D
 @export var muzzle : Marker2D
 
-@export_category("Shoot Stand State")
-@export var hold_gun_time : float = 2.0
-
 var muzzle_position : Vector2
 
 
@@ -33,13 +30,16 @@ func on_physics_process(delta : float) -> void:
 	#jump state
 	if GameInputEvents.jump_input():
 		transition.emit("Jump")
+	
+	
 
 
 func enter() -> void:
 	muzzle.position = Vector2(19, -27)
 	muzzle_position = muzzle.position
-	get_tree().create_timer(hold_gun_time).timeout.connect(on_hold_gun_timeout)
 	animated_sprite_2d.play("Shoot_Stand")
+	gun_muzzle_position()
+	
 
 
 func exit() -> void:
@@ -58,11 +58,10 @@ func gun_muzzle_position() -> void:
 
 
 func gun_shooting() -> void:
-	var direction : float  = -1 if animated_sprite_2d.flip_h == true else 1
 	
 	var bullet_instance := bullet.instantiate() as Bullet
-	bullet_instance.direction = direction
-	bullet_instance.move_x_direction = true
+	bullet_instance.move_x_direction = clamp(muzzle.position.x, -1, 1)
+	bullet_instance.move_y_direction = 0
 	bullet_instance.global_position = muzzle.global_position
 	get_parent().add_child(bullet_instance)
 	

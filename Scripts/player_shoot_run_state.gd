@@ -54,6 +54,7 @@ func enter() -> void:
 	muzzle.position = Vector2(19, -27)
 	muzzle_position = muzzle.position
 	animated_sprite_2d.play("Shoot_Run")
+	gun_muzzle_position(shoot_direction)
 	gun_shooting(shoot_direction)
 
 
@@ -70,13 +71,10 @@ func gun_muzzle_position(direction : float) -> void:
 
 func gun_shooting(direction : float) -> void:
 	var bullet_instance := bullet.instantiate() as Bullet
-	if direction > 0:
-		direction = 1
-	elif direction < 0:
-		direction = -1
 	
-	bullet_instance.direction = direction
-	bullet_instance.move_x_direction = true
+	
+	bullet_instance.move_x_direction = clamp(muzzle.position.x, -1, 1)
+	bullet_instance.move_y_direction = 0
 	bullet_instance.global_position = muzzle.global_position
 	get_parent().add_child(bullet_instance)
 	

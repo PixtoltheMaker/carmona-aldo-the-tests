@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://db18qjcxpaxki" path="res://Scenes/enemy_crab.tscn" id="3_50ct6"]
 [ext_resource type="PackedScene" uid="uid://cvv3sqb6dk50q" path="res://Scenes/enemy_dino.tscn" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://b48ku5x1lnvlg" path="res://Scenes/game_screen.tscn" id="5_ak5v8"]
+[ext_resource type="PackedScene" uid="uid://d1h75dpipijv1" path="res://Scenes/enemy_beetle.tscn" id="7_ydpld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5l72"]
 texture = ExtResource("1_3dogw")
@@ -182,7 +183,19 @@ position = Vector2(-73, 98)
 [node name="Point2" type="Marker2D" parent="Enemy_Crab3/Patrol Nodes" unique_id=974994911]
 position = Vector2(72, 96)
 
-[node name="EnemyDino" parent="." unique_id=1256969862 instance=ExtResource("4_hb2xm")]
-position = Vector2(683, -79)
-
 [node name="Game Screen" parent="." unique_id=1631691290 instance=ExtResource("5_ak5v8")]
+
+[node name="EnemyDino" parent="." unique_id=1256969862 instance=ExtResource("4_hb2xm")]
+position = Vector2(656, -35)
+
+[node name="Enemy Beetle" parent="." unique_id=578023315 node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_ydpld")]
+position = Vector2(220, -97)
+patrol_points = NodePath("Patrol Nodes")
+
+[node name="Patrol Nodes" type="Node2D" parent="Enemy Beetle" unique_id=535900443]
+
+[node name="Point1" type="Marker2D" parent="Enemy Beetle/Patrol Nodes" unique_id=1298825418]
+position = Vector2(-266, -13)
+
+[node name="Point2" type="Marker2D" parent="Enemy Beetle/Patrol Nodes" unique_id=1267645969]
+position = Vector2(31, -10)

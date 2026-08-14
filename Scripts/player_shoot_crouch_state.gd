@@ -50,11 +50,10 @@ func gun_muzzle_position() -> void:
 
 
 func gun_shooting() -> void:
-	var direction : float  = -1 if animated_sprite_2d.flip_h == true else 1
 	
 	var bullet_instance := bullet.instantiate() as Bullet
-	bullet_instance.direction = direction
-	bullet_instance.move_x_direction = true
+	bullet_instance.move_x_direction = clamp(muzzle.position.x, -1, 1)
+	bullet_instance.move_y_direction = 0
 	bullet_instance.global_position = muzzle.global_position
 	get_parent().add_child(bullet_instance)
 	

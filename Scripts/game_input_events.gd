@@ -1,6 +1,7 @@
 class_name GameInputEvents
 extends Node
 
+
 static func movement_input() -> float:
 	var direction : float = Input.get_axis("Move_Left", "Move_Right")
 	return direction

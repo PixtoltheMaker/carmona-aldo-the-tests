@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c84janl2ns2fs"]
+
+[ext_resource type="Texture2D" uid="uid://d27lvftdly8c1" path="res://Assets/warped-files/Assets/PNG/spritesheets/Fx/shot.png" id="1_tcvu8"]
+[ext_resource type="Script" uid="uid://nu0aal71itvd" path="res://Scripts/enemy_bullet.gd" id="2_54jiv"]
+[ext_resource type="PackedScene" uid="uid://cmdgp7hr22yn6" path="res://Scenes/enemy_stats.tscn" id="3_b6yqb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54jiv"]
+atlas = ExtResource("1_tcvu8")
+region = Rect2(0, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6yqb"]
+atlas = ExtResource("1_tcvu8")
+region = Rect2(6, 0, 6, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72t2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54jiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6yqb")
+}],
+"loop": true,
+"name": &"Normal",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrehe"]
+radius = 2.0
+
+[node name="Enemy Bullet" type="AnimatedSprite2D" unique_id=285782181 groups=["Enemy"]]
+sprite_frames = SubResource("SpriteFrames_72t2l")
+animation = &"Normal"
+frame_progress = 0.62701535
+script = ExtResource("2_54jiv")
+
+[node name="Timer" type="Timer" parent="." unique_id=385060408]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1620165507 groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=829699072]
+shape = SubResource("CircleShape2D_mrehe")
+
+[node name="Enemy Stats" parent="Hitbox" unique_id=1244936304 instance=ExtResource("3_b6yqb")]
+speed = 0
+health_amount = 0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

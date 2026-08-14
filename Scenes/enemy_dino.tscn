@@ -106,7 +106,7 @@ animations = [{
 radius = 15.033297
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_886ra"]
-size = Vector2(136.8077, 61)
+size = Vector2(217.94363, 61)
 
 [node name="EnemyDino" type="CharacterBody2D" unique_id=1256969862 groups=["Enemy"]]
 collision_layer = 4
@@ -141,7 +141,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1010579760]
-position = Vector2(-2, -30)
+position = Vector2(0, -30)
 scale = Vector2(1.0014057, 1)
 shape = SubResource("RectangleShape2D_886ra")
 debug_color = Color(0.7911263, 0.41833833, 0.25986204, 0.41960785)

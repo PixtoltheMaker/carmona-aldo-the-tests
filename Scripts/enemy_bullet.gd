@@ -1,24 +1,17 @@
-class_name Bullet
+class_name Enemy_Bullet
 extends AnimatedSprite2D
 var bullet_impact_effects := preload("res://Scenes/bullet_impact_frame.tscn")
 
-var speed : int = 600
-var direction : int
+var speed : int = 200
+var direction : Vector2
 var damage_amount : int = 1
-var move_x_direction : int = 0
-var move_y_direction : int = 0
+
 
 func _physics_process(delta: float) -> void:
-	if move_x_direction == 0 and move_y_direction == 0:
-		return
-	else:
-		move_local_y(move_y_direction * speed * delta)
-		move_local_x(move_x_direction * speed * delta)
-
+	position += direction * speed * delta
 
 func _on_timer_timeout() -> void:
 	queue_free()
-
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -33,10 +26,11 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func get_damage_amount() -> int:
 	return damage_amount
 
-
 func bullet_impact() -> void:
 	var bullet_impact_effect_instance := bullet_impact_effects.instantiate() as Node2D
 	bullet_impact_effect_instance.global_position = global_position
 	get_parent().add_child(bullet_impact_effect_instance)
 	queue_free()
-	
+
+func fire_bullet(direct : Vector2) -> void:
+	direction = direct

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d1h75dpipijv1"]
+
+[ext_resource type="Texture2D" uid="uid://ba7erqbownjd7" path="res://Assets/Enemies Pack FIles/Enemies Pack FIles/Assets/spritesheets/bettle.png" id="1_1hhju"]
+[ext_resource type="Script" uid="uid://uvuqa5txkckn" path="res://Scripts/enemy_beetle.gd" id="1_irb78"]
+[ext_resource type="PackedScene" uid="uid://cmdgp7hr22yn6" path="res://Scenes/enemy_stats.tscn" id="2_irb78"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ypwt"]
+atlas = ExtResource("1_1hhju")
+region = Rect2(0, 0, 36, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f45uy"]
+atlas = ExtResource("1_1hhju")
+region = Rect2(36, 0, 36, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87ups"]
+atlas = ExtResource("1_1hhju")
+region = Rect2(72, 0, 36, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnpnx"]
+atlas = ExtResource("1_1hhju")
+region = Rect2(108, 0, 36, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d57ly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ypwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f45uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87ups")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnpnx")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y7n1y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bner2"]
+radius = 13.0
+
+[node name="Enemy Beetle" type="CharacterBody2D" unique_id=578023315 groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_irb78")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=991217161]
+position = Vector2(0, -19)
+sprite_frames = SubResource("SpriteFrames_d57ly")
+animation = &"Fly"
+autoplay = "Fly"
+frame_progress = 0.41130316
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1359820977]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_y7n1y")
+
+[node name="Timer" type="Timer" parent="." unique_id=141840623]
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=347857909]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=245790976]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_bner2")
+debug_color = Color(0.79542387, 0.39415026, 0.4315524, 0.41960785)
+
+[node name="Enemy Stats" parent="." unique_id=1244936304 instance=ExtResource("2_irb78")]
+
+[node name="Shoot Timer" type="Timer" parent="." unique_id=1990340653]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Shoot Timer" to="." method="_on_shoot_timer_timeout"]

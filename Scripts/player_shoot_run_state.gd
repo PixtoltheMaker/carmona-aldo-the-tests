@@ -47,15 +47,19 @@ func on_physics_process(delta : float) -> void:
 	if !character_body_2d.is_on_floor():
 		transition.emit("Fall")
 	
+	#shoot run up diag
+	if direction != 0 and GameInputEvents.diagonal_input():
+		transition.emit("ShootRunUpDiag")
+	
+	
 
 
 func enter() -> void:
 	var shoot_direction : float = GameInputEvents.movement_input()
-	muzzle.position = Vector2(19, -27)
+	muzzle.position = Vector2(16, -27)
 	muzzle_position = muzzle.position
 	animated_sprite_2d.play("Shoot_Run")
 	gun_muzzle_position(shoot_direction)
-	gun_shooting(shoot_direction)
 
 
 func exit() -> void:

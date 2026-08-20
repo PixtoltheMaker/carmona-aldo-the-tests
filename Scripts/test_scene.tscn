@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvv3sqb6dk50q" path="res://Scenes/enemy_dino.tscn" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://b48ku5x1lnvlg" path="res://Scenes/game_screen.tscn" id="5_ak5v8"]
 [ext_resource type="PackedScene" uid="uid://d1h75dpipijv1" path="res://Scenes/enemy_beetle.tscn" id="7_ydpld"]
+[ext_resource type="PackedScene" uid="uid://c8me1ygusofip" path="res://Scenes/Platforms/platform_rails.tscn" id="8_aekm5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5l72"]
 texture = ExtResource("1_3dogw")
@@ -195,7 +196,20 @@ patrol_points = NodePath("Patrol Nodes")
 [node name="Patrol Nodes" type="Node2D" parent="Enemy Beetle" unique_id=535900443]
 
 [node name="Point1" type="Marker2D" parent="Enemy Beetle/Patrol Nodes" unique_id=1298825418]
-position = Vector2(-266, -13)
+position = Vector2(-260, 86)
 
 [node name="Point2" type="Marker2D" parent="Enemy Beetle/Patrol Nodes" unique_id=1267645969]
 position = Vector2(31, -10)
+
+[node name="Respawn Point" type="Marker2D" parent="." unique_id=626748575]
+unique_name_in_owner = true
+position = Vector2(-411, -8)
+
+[node name="Platform Rails" parent="." unique_id=1750374444 instance=ExtResource("8_aekm5")]
+position = Vector2(-299, -72)
+
+[node name="Platform Rails2" parent="." unique_id=150659116 instance=ExtResource("8_aekm5")]
+position = Vector2(-298, -121)
+
+[node name="Platform Rails3" parent="." unique_id=1662723322 instance=ExtResource("8_aekm5")]
+position = Vector2(-298, -162)

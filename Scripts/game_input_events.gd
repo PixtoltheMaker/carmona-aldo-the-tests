@@ -14,16 +14,22 @@ static func shoot_input() -> bool:
 	var shootInput : bool = Input.is_action_just_pressed("Shoot")
 	return shootInput
 
-static func shoot_up_input() -> bool:
-	var shootInput : bool = Input.is_action_just_pressed("Shoot")
+static func up_input() -> bool:
 	var upInput : bool = Input.is_action_pressed("look_up")
-	return upInput and shootInput
+	return upInput
 
 static func crouch_input() -> bool:
 	var crouchInput : bool = Input.is_action_pressed("Crouch")
 	return crouchInput
 
-static func fall_input() -> bool:
-	var crouchInput : bool = Input.is_action_pressed("Crouch")
+static func down_input() -> bool:
 	var downInput: bool = Input.is_action_pressed("Look_Down")
-	return crouchInput and downInput
+	return downInput
+
+static func diagonal_input() -> bool:
+	var diagonalInput : bool = Input.is_action_just_pressed("Diagonal_Aim")
+	return diagonalInput
+
+static func aim_input() -> bool:
+	var aimInput : bool = Input.is_action_just_pressed("Aim")
+	return aimInput

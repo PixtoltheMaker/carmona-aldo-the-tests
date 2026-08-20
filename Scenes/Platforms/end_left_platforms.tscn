@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ci4ugxinhn4ee"]
+
+[ext_resource type="Texture2D" uid="uid://bvcinepylnhhc" path="res://Assets/My Assets/Tilemap/Tests_Lab_tilemap.png" id="1_ery0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbe88"]
+size = Vector2(38, 3)
+
+[node name="End_Left_Platforms" type="StaticBody2D" unique_id=1338950949]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=578753017]
+texture = ExtResource("1_ery0j")
+region_enabled = true
+region_rect = Rect2(0, 256, 48, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=782317448]
+position = Vector2(5, 1.5)
+shape = SubResource("RectangleShape2D_qbe88")
+one_way_collision = true

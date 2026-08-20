@@ -2,11 +2,13 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
+@onready var respawn_point: Marker2D = %"Respawn Point"
 
 
 var bullet := preload("res://Scenes/bullet.tscn")
 
-
+func _ready() -> void:
+	HealthManager.on_death.connect(handle_death)
 
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
@@ -33,3 +35,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		
 		
 		HealthManager.decrease_health(1)
+
+func handle_death() -> void:
+	global_position = respawn_point.global_position

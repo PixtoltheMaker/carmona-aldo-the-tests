@@ -39,6 +39,8 @@ func on_physics_process(delta : float) -> void:
 	if direction != 0:
 		animated_sprite_2d.flip_h = false if direction > 0 else true
 	
+	if character_body_2d.velocity.y > 100:
+		animated_sprite_2d.play("Fall")
 	
 	character_body_2d.move_and_slide()
 	

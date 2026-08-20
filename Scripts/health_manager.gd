@@ -4,6 +4,7 @@ var max_health : int = 5
 var current_health : int
 
 signal on_health_changed
+signal on_death
 
 func _ready() -> void:
 	current_health = max_health
@@ -16,6 +17,9 @@ func decrease_health(health_amount : int) -> void:
 	
 	print("decrease health called")
 	on_health_changed.emit(current_health)
+	
+	if current_health == 0:
+		death()
 
 func increase_health(health_amount : int) -> void:
 	current_health += health_amount
@@ -25,3 +29,9 @@ func increase_health(health_amount : int) -> void:
 	
 	print("increase health called")
 	on_health_changed.emit(current_health)
+
+func death() -> void:
+	on_death.emit()
+	current_health = max_health
+	on_health_changed.emit(current_health)
+	

@@ -39,8 +39,12 @@ func on_physics_process(delta : float) -> void:
 		transition.emit("Fall")
 	
 	#shoot run state
-	if direction != 0 and GameInputEvents.shoot_input():
+	if direction != 0 and GameInputEvents.aim_input():
 		transition.emit("ShootRun")
+	
+	#shoot run up diag
+	if direction != 0 and GameInputEvents.diagonal_input():
+		transition.emit("ShootRunUpDiag")
 
 
 func enter() -> void:

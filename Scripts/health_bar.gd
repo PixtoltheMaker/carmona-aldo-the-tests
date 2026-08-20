@@ -15,6 +15,11 @@ func _ready() -> void:
 	
 
 func on_player_health_changed(player_current_health : int) -> void:
+	heart_1.texture = heart1
+	heart_2.texture = heart1
+	heart_3.texture = heart1
+	heart_4.texture = heart1
+	heart_5.texture = heart1
 	if player_current_health == 5:
 		heart_5.texture = heart1
 	elif player_current_health < 5:

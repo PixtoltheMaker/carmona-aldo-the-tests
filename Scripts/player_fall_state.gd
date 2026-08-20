@@ -34,14 +34,22 @@ func on_physics_process(delta : float) -> void:
 	
 	character_body_2d.move_and_slide()
 	
+	if GameInputEvents.down_input():
+		character_body_2d.set_collision_mask_value(5, false)
+	else:
+		character_body_2d.set_collision_mask_value(5, true)
+	
 	#transitioning states
 	
 	#idle state
 	if character_body_2d.is_on_floor():
 		transition.emit("Idle")
+		character_body_2d.set_collision_mask_value(5, true)
+		
 	
 	#jump state
 	if GameInputEvents.jump_input() and coyote_jump:
+		character_body_2d.set_collision_mask_value(5, true)
 		transition.emit("Jump")
 
 

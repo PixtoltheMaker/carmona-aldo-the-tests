@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://thhc3jqewgfq"]
+
+[ext_resource type="AudioStream" uid="uid://cvdms6227sipa" path="res://Assets/My Assets/Music/Lab Rat.mp3" id="1_pu4hd"]
+
+[node name="background music" type="AudioStreamPlayer" unique_id=724961778]
+stream = ExtResource("1_pu4hd")
+volume_db = -12.0
+autoplay = true

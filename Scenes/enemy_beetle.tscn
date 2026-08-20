@@ -49,6 +49,7 @@ radius = 13.0
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_irb78")
+wait_time = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=991217161]
 position = Vector2(0, -19)
@@ -74,9 +75,10 @@ shape = SubResource("CircleShape2D_bner2")
 debug_color = Color(0.79542387, 0.39415026, 0.4315524, 0.41960785)
 
 [node name="Enemy Stats" parent="." unique_id=1244936304 instance=ExtResource("2_irb78")]
+speed = 3000
+health_amount = 2
 
 [node name="Shoot Timer" type="Timer" parent="." unique_id=1990340653]
-wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

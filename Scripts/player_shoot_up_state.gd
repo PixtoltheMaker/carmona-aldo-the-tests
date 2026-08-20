@@ -34,10 +34,26 @@ func on_physics_process(delta : float) -> void:
 	#fall state
 	if !character_body_2d.is_on_floor():
 		transition.emit("Fall")
+	
+	#shoot down state
+	if GameInputEvents.down_input():
+		transition.emit("ShootDown")
+	
+	#shoot stand state
+	if GameInputEvents.aim_input():
+		transition.emit("ShootStand")
+	
+	#shoot up diag state
+	if GameInputEvents.diagonal_input():
+		transition.emit("ShootUpDiag")
+	
+	#shoot crouch state
+	if GameInputEvents.crouch_input():
+		transition.emit("ShootCrouch")
 
 
 func enter() -> void:
-	muzzle.position = Vector2(4, -42)
+	muzzle.position = Vector2(1, -47)
 	muzzle_position = muzzle.position
 	animated_sprite_2d.play("Shoot_Up")
 

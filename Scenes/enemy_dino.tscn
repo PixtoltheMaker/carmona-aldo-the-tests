@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cgoyteb1gmuta" path="res://Scripts/StateMachine/node_finite_state_machine.gd" id="4_hjlad"]
 [ext_resource type="Script" uid="uid://co0fuwhtwloq5" path="res://Scripts/idle_state.gd" id="5_nyqhr"]
 [ext_resource type="Script" uid="uid://cha0ivhdnhcoo" path="res://Scripts/attack_state.gd" id="6_tewnn"]
+[ext_resource type="Script" uid="uid://bxm5e42bnpo5d" path="res://Scripts/stunned_state.gd" id="9_1pkff"]
 [ext_resource type="PackedScene" uid="uid://cmdgp7hr22yn6" path="res://Scenes/enemy_stats.tscn" id="9_21r8x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hjlad"]
@@ -100,13 +101,19 @@ animations = [{
 "speed": 14.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_36ocx"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_21r8x"]
+radius = 25.0
+height = 80.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_886ra"]
-radius = 15.033297
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1pkff"]
+radius = 31.0
+height = 88.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_886ra"]
-size = Vector2(217.94363, 61)
+size = Vector2(1524.8564, 80.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae7rm"]
+size = Vector2(72, 9)
 
 [node name="EnemyDino" type="CharacterBody2D" unique_id=1256969862 groups=["Enemy"]]
 collision_layer = 4
@@ -114,7 +121,8 @@ collision_mask = 3
 script = ExtResource("1_ae7rm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1146356667]
-position = Vector2(0, -13)
+position = Vector2(0, -48)
+scale = Vector2(3.25, 3.6923075)
 sprite_frames = SubResource("SpriteFrames_5v2ri")
 animation = &"Idle"
 autoplay = "Idle"
@@ -122,16 +130,16 @@ frame_progress = 0.10465615
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1826647344]
 light_mask = 4
-position = Vector2(-2, -11)
-shape = SubResource("CircleShape2D_36ocx")
+position = Vector2(-6, -40)
+shape = SubResource("CapsuleShape2D_21r8x")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1598525056]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1478146858]
-position = Vector2(-2, -11)
-shape = SubResource("CircleShape2D_886ra")
+position = Vector2(-6, -40)
+shape = SubResource("CapsuleShape2D_1pkff")
 debug_color = Color(0.69665664, 0.31124672, 0.95428187, 0.41960785)
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=416613276]
@@ -141,10 +149,23 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1010579760]
-position = Vector2(0, -30)
+position = Vector2(0, -40)
 scale = Vector2(1.0014057, 1)
 shape = SubResource("RectangleShape2D_886ra")
 debug_color = Color(0.7911263, 0.41833833, 0.25986204, 0.41960785)
+
+[node name="StunArea" type="Area2D" parent="." unique_id=873457634]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StunArea" unique_id=1391663022]
+position = Vector2(-4, -40)
+shape = SubResource("RectangleShape2D_ae7rm")
+debug_color = Color(0.34413117, 0.6120428, 0.30692843, 0.41960785)
+
+[node name="Stunned Timer" type="Timer" parent="." unique_id=564418515]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
 
 [node name="Gravity" type="Node" parent="." unique_id=1119781528 node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
 script = ExtResource("3_7d8q5")
@@ -155,25 +176,31 @@ animated_sprite_2d = NodePath("../AnimatedSprite2D")
 script = ExtResource("4_886ra")
 node_finite_state_machine = NodePath("../StateMachine")
 
-[node name="StateMachine" type="Node" parent="." unique_id=694406087]
+[node name="StateMachine" type="Node" parent="." unique_id=694406087 node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("4_hjlad")
+initial_node_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=856729078 node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=856729078 node_paths=PackedStringArray("animated_sprite_2d")]
 script = ExtResource("5_nyqhr")
-character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=118872447 node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=118872447 node_paths=PackedStringArray("animated_sprite_2d")]
 script = ExtResource("6_tewnn")
-character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
-speed = 50
-max_speed = 60
+speed = 400
+max_speed = 250
+
+[node name="Stunned" type="Node" parent="StateMachine" unique_id=95754468 node_paths=PackedStringArray("animated_sprite_2d")]
+script = ExtResource("9_1pkff")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
 [node name="Enemy Stats" parent="." unique_id=1244936304 instance=ExtResource("9_21r8x")]
 speed = 0
-health_amount = 3
+health_amount = 80
+damageable = false
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="AttackArea" to="StateMachineController" method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="StateMachineController" method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="StunArea" to="StateMachineController" method="_on_stun_area_body_entered"]
+[connection signal="timeout" from="Stunned Timer" to="StateMachineController" method="_on_stunned_timer_timeout"]

@@ -19,6 +19,11 @@ func on_physics_process(delta : float) -> void:
 	if GameInputEvents.shoot_input():
 		gun_shooting()
 	
+	if GameInputEvents.down_input():
+		character_body_2d.set_collision_mask_value(5, false)
+	else:
+		character_body_2d.set_collision_mask_value(5, true)
+	
 	#trasitioning states
 	
 	#run state
@@ -30,10 +35,21 @@ func on_physics_process(delta : float) -> void:
 	#jump state
 	if GameInputEvents.jump_input():
 		transition.emit("Jump")
+	
+	#fall state
+	if GameInputEvents.down_input():
+		transition.emit("Fall")
+	#shoot crouch up
+	if GameInputEvents.up_input():
+		transition.emit("ShootCrouchUp")
+	
+	#shoot crouch up diag
+	if GameInputEvents.diagonal_input():
+		transition.emit("ShootCrouchUpDiag")
 
 
 func enter() -> void:
-	muzzle.position = Vector2(17, -14)
+	muzzle.position = Vector2(15, -15)
 	muzzle_position = muzzle.position
 	animated_sprite_2d.play("Shoot_Crouch")
 
